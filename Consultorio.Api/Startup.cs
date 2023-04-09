@@ -1,5 +1,7 @@
+using Consultorio.Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,6 +22,8 @@ namespace Consultorio.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddDbContext<ConsultorioContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConsultorioConnection")));
 
             services.AddSwaggerGen(c =>
             {
