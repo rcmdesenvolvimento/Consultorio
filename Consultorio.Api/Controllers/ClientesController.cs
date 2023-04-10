@@ -43,13 +43,12 @@ namespace Consultorio.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await _clienteManager.GetClientesAsync(id);
+            var result = await _clienteManager.GetClientesAsync(id); 
 
             if(result == null)
             {
-                return BadRequest("Resgistro não encontrado \n "+
-                    "Status : "+HttpStatusCode.BadRequest.ToString()+" \n"+
-                    "Data   :"+DateTime.UtcNow);
+                return BadRequest("Erro   : Registro não encontrado \n"+
+                                  "Data   : "+DateTime.UtcNow.ToString("dd/MM/yyyy"));
             }
 
             return Ok(await _clienteManager.GetClientesAsync(id));
@@ -62,20 +61,31 @@ namespace Consultorio.Api.Controllers
 
         // POST api/<ClientesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] Cliente cliente)
         {
+            if (ModelState.IsValid)
+            {
+                return CreatedAtAction(nameof(Get), new { id = cliente.Id }, await _clienteManager.InsertClienteAsync(cliente));
+            }
+            return BadRequest();
         }
 
-        // PUT api/<ClientesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public async Task<IActionResult> Put(Cliente cliente)
         {
+            var clienteAtualizado = await _clienteManager.UpdateClienteAsync(cliente);
+
+            if(clienteAtualizado == null) { return NotFound(); }
+
+            return Ok();
         }
 
-        // DELETE api/<ClientesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            await _clienteManager.DeleteClienteAsync(id);
+
+            return NoContent();
         }
     }
 }

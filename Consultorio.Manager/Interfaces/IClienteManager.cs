@@ -8,7 +8,11 @@ namespace Consultorio.Manager.Interfaces
 {
     public interface IClienteManager
     {
+        Task DeleteClienteAsync(int id);
         Task<Cliente> GetClientesAsync(int id);
         Task<IEnumerable<Cliente>> GetClientesAsync();
+        Task<Cliente> InsertClienteAsync(Cliente cliente);
+        Task<Cliente> UpdateClienteAsync(Cliente cliente);
+
     }
 }

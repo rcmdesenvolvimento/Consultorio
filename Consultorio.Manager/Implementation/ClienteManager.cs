@@ -1,8 +1,6 @@
 ﻿using Consultorio.Core.Domain;
 using Consultorio.Manager.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Consultorio.Manager.Implementation
@@ -24,6 +22,21 @@ namespace Consultorio.Manager.Implementation
         public Task<IEnumerable<Cliente>> GetClientesAsync()
         {
             return _clienteRepository.GetAllClienteAsync();
+        }
+
+        public async Task<Cliente> InsertClienteAsync(Cliente cliente)
+        {
+            return await _clienteRepository.InsertClienteAsync(cliente);
+        }
+
+        public async Task<Cliente> UpdateClienteAsync(Cliente cliente)
+        {
+            return await _clienteRepository.UpdateClienteAsync(cliente);
+        }
+
+        public async Task DeleteClienteAsync(int id)
+        {
+            await _clienteRepository.DeleteClienteAsync(id);
         }
     }
 }
