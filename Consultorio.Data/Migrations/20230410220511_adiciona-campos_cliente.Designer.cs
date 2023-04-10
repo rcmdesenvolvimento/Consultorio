@@ -4,14 +4,16 @@ using Consultorio.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Consultorio.Data.Migrations
 {
     [DbContext(typeof(ConsultorioContext))]
-    partial class ConsultorioContextModelSnapshot : ModelSnapshot
+    [Migration("20230410220511_adiciona-campos_cliente")]
+    partial class adicionacampos_cliente
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

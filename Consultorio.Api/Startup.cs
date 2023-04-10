@@ -2,6 +2,8 @@ using Consultorio.Data.Context;
 using Consultorio.Data.Repository;
 using Consultorio.Manager.Implementation;
 using Consultorio.Manager.Interfaces;
+using Consultorio.Manager.Validator;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Globalization;
 
 namespace Consultorio.Api
 {
@@ -22,9 +25,15 @@ namespace Consultorio.Api
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        [System.Obsolete]
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers()
+                    .AddFluentValidation(p =>
+                    {
+                        p.RegisterValidatorsFromAssemblyContaining<ClienteValidator>();
+                        p.ValidatorOptions.LanguageManager.Culture = new CultureInfo("pt-BR");
+                    });
 
             services.AddDbContext<ConsultorioContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConsultorioConnection")));
 

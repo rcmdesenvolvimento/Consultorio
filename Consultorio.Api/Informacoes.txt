@@ -2,6 +2,16 @@
 ## Sistema de Consultório
 #######################################
 
+#################
+## Classe Cliente
+#################
+
+## Etapas Al(01) 
+## Análise do projeto (ok)
+
+## Etapas Al(02) 
+## Criação do projeto e sua arquitetura (ok)
+
 ## Etapas Al(3) 
 ## Criar Repositório de Clientes (ok)
 ## Apontar consultas da controller para a base de dados (ok)
@@ -9,4 +19,6 @@
 ## Etapas Al(4) 
 ## Criar Post, Put e Delete de Clientes (ok)
 
+## Etapas Al(5) 
+## Implementação do Fluent Validation
 
