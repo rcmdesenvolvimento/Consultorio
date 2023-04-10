@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Consultorio.Core\Consultorio.Core.csproj" />
+    <ProjectReference Include="..\Consultorio.Manager\Consultorio.Manager.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,7 @@
 using Consultorio.Data.Context;
+using Consultorio.Data.Repository;
+using Consultorio.Manager.Implementation;
+using Consultorio.Manager.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +28,11 @@ namespace Consultorio.Api
 
             services.AddDbContext<ConsultorioContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConsultorioConnection")));
 
+            //Injeção de dependências
+            services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<IClienteManager, ClienteManager>();
+
+            // Swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Consultório", Version = "v1" });

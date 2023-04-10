@@ -1,0 +1,7 @@
+﻿#######################################
+## Sistema de Consultório
+#######################################
+
+## Etapas Al(3) 
+## Criar Repositório de Clientes ()
+## Apontar consultas da controller para a base de dados ()
